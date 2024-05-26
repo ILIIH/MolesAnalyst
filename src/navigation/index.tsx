@@ -3,15 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import { View, Text } from "react-native";
-
-// Example screens
-function HomeScreen() {
-  return (
-    <View>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
+import HomeScreen from "../screens/HomeScreen";
 
 function DetailsScreen() {
   return (
@@ -26,7 +18,11 @@ const Stack = createStackNavigator();
 function StackNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="Details" component={DetailsScreen} />
     </Stack.Navigator>
   );
@@ -37,8 +33,7 @@ const Drawer = createDrawerNavigator();
 function DrawerNavigator() {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="Stack" component={StackNavigator} />
-      {/* Add more screens to the drawer here */}
+      <Drawer.Screen name="Moles check" component={StackNavigator} />
     </Drawer.Navigator>
   );
 }
