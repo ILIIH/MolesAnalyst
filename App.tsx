@@ -8,7 +8,7 @@ import Toast from "react-native-easy-toast";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 import Navigation from "./src/navigation";
 import eventManager, { SHOW_TOAST } from "./src/utility/eventManager";
-import { store } from "./src/redux/ReduxStore";
+import store from "./src/redux/ReduxStore";
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);

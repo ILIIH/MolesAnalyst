@@ -1,20 +1,24 @@
-import { legacy_createStore as createStore } from "redux";
-import { persistCombineReducers, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import rootReducer from "./reducers/rootReducer";
+import { legacy_createStore, applyMiddleware, compose } from "redux";
+import { persistCombineReducers } from "redux-persist";
+import createSecureStore from "redux-persist-expo-securestore";
+import reducers from "./reducers";
 
-const persistConfig = {
-  key: "root",
+// Secure storage
+const storage = createSecureStore();
+
+const config = {
+  key: "primary",
   storage,
+  whitelist: ["articles"],
 };
 
-const persistedReducer = persistCombineReducers(persistConfig, rootReducer);
+const store = legacy_createStore(
+  persistCombineReducers(config, reducers),
+  undefined
+);
 
-const store = createStore(persistedReducer);
-
-const persistor = persistStore(store);
-
-export { store, persistor };
+export default store;
 
 export type RootState = ReturnType<typeof store.getState>;
+
 export type AppDispatch = typeof store.dispatch;
