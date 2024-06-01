@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { StatusBar, LogBox } from "react-native";
-import * as Font from "expo-font";
+import { StatusBar } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Provider as ReduxProvider } from "react-redux";
 import { persistStore } from "redux-persist";

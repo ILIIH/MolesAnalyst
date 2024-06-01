@@ -1,5 +1,7 @@
-import { View, Text, FlatList } from "react-native";
+import React, { useState } from "react";
+import { View, Text, FlatList, Modal, Button, StyleSheet } from "react-native";
 import ArticleCard from "../components/cards/ArticleCard";
+import DisclaimerModal from "../components/modals/DisclaimerModal";
 
 const data = [
   {
@@ -28,17 +30,38 @@ const data = [
   },
 ];
 
-const numColumns = 2;
-
 const HomeScreen = () => {
+  const [isModalVisible, setIsModalVisible] = useState(true);
+  const handleModal = () => setIsModalVisible(!isModalVisible);
+
   return (
-    <FlatList
-      data={data}
-      renderItem={({ item }) => <ArticleCard data={item} />}
-      keyExtractor={(item) => item.id}
-      numColumns={numColumns}
-    />
+    <View style={styles.container}>
+      <View style={styles.contentContainer}>
+        <FlatList
+          data={data}
+          renderItem={({ item }) => <ArticleCard data={item} />}
+          keyExtractor={(item) => item.id}
+          numColumns={2}
+        />
+      </View>
+      <DisclaimerModal visible={isModalVisible} onClosePressed={handleModal} />
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  contentContainer: {
+    flex: 1,
+    marginTop: 20,
+  },
+  modalContent: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default HomeScreen;
