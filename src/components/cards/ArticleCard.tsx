@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 type Props = {
-  containerStyle?: any;
   onPress?: (data: any) => void;
   data: any;
 };
@@ -12,8 +11,8 @@ export default React.memo<Props>((props: Props) => {
   const { data } = props;
   const { articleImageUrl, title } = data;
   return (
-    <View style={[styles.card, props.containerStyle]}>
-      <TouchableOpacity style={styles.opacity}>
+    <View style={[styles.card]}>
+      <TouchableOpacity>
         <Image source={{ uri: articleImageUrl }} style={styles.cardImage} />
         <Text style={styles.cardText}>{title}</Text>
       </TouchableOpacity>
@@ -24,9 +23,6 @@ export default React.memo<Props>((props: Props) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 10,
-  },
-  opacity: {
-    width: "100%",
   },
   card: {
     flex: 1,
@@ -43,6 +39,7 @@ const styles = StyleSheet.create({
     width: "40%",
   },
   cardImage: {
+    width: "100%",
     height: 100,
   },
   cardText: {
