@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Fonts } from "../../themes";
 
 type Props = {
   onPress?: (data: any) => void;
@@ -12,10 +13,8 @@ export default React.memo<Props>((props: Props) => {
   const { articleImageUrl, title } = data;
   return (
     <View style={[styles.card]}>
-      <TouchableOpacity>
-        <Image source={{ uri: articleImageUrl }} style={styles.cardImage} />
-        <Text style={styles.cardText}>{title}</Text>
-      </TouchableOpacity>
+      <Image source={{ uri: articleImageUrl }} style={styles.cardImage} />
+      <Text style={[Fonts.style.baseH6, styles.cardText]}>{title}</Text>
     </View>
   );
 });
@@ -27,8 +26,7 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     margin: 10,
-    backgroundColor: "#faf9f7",
-    borderRadius: 10,
+    backgroundColor: "#EFEFEF",
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "#000",
@@ -44,7 +42,9 @@ const styles = StyleSheet.create({
   },
   cardText: {
     marginTop: 10,
+    marginBottom: 10,
     fontSize: 16,
     fontWeight: "bold",
+    fontFamily: "InriaSans-Light",
   },
 });

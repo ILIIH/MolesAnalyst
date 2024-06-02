@@ -8,6 +8,14 @@ import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 import Navigation from "./src/navigation";
 import eventManager, { SHOW_TOAST } from "./src/utility/eventManager";
 import store from "./src/redux/ReduxStore";
+import * as Font from "expo-font";
+
+const customFonts = {
+  InriaSans: require("./src/assets/fonts/InriaSans-Regular.ttf"),
+  "InriaSans-Light": require("./src/assets/fonts/InriaSans-Light.ttf"),
+  "InriaSans-Bold": require("./src/assets/fonts/InriaSans-Bold.ttf"),
+  "InriaSans-Italic": require("./src/assets/fonts/InriaSans-Italic.ttf"),
+};
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -21,6 +29,8 @@ export default function App() {
         resolve();
       });
     });
+    const fontTask = Font.loadAsync(customFonts);
+    await Promise.all([storeTask, fontTask]);
     await SplashScreen.hideAsync();
 
     setIsReady(true);

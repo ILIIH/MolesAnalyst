@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import { View, Text, FlatList, Modal, Button, StyleSheet } from "react-native";
+import {
+  View,
+  Image,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import ArticleCard from "../components/cards/ArticleCard";
 import DisclaimerModal from "../components/modals/DisclaimerModal";
+import Images from "../themes/Images";
 
 const data = [
   {
@@ -44,6 +51,14 @@ const HomeScreen = () => {
           numColumns={2}
         />
       </View>
+      <TouchableOpacity
+        style={styles.fab}
+        onPress={() => {
+          /* Handle FAB press */
+        }}
+      >
+        <Image source={Images.iconScan} style={styles.fabImage} />
+      </TouchableOpacity>
       <DisclaimerModal visible={isModalVisible} onClosePressed={handleModal} />
     </View>
   );
@@ -52,10 +67,41 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   contentContainer: {
     flex: 1,
     marginTop: 20,
+    width: "100%", // Make sure the content container takes full width
+  },
+  scanImage: {
+    width: 100,
+    height: 100,
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: [{ translateX: -50 }, { translateY: -50 }],
+  },
+  fab: {
+    position: "absolute",
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: "#FFFFFF",
+    justifyContent: "center",
+    alignItems: "center",
+    bottom: 30,
+    right: 30,
+    elevation: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+  },
+  fabImage: {
+    width: 40,
+    height: 21,
   },
   modalContent: {
     flex: 1,
