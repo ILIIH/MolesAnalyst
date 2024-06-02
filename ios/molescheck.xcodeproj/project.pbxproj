@@ -15,6 +15,12 @@
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		0EB9E28931EF4451B70A8968 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2ECA07935074DEF969C7F7A /* noop-file.swift */; };
+		477DFE8AE66F419482990467 /* InriaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3C654E39E7D46E8A9583EB6 /* InriaSans-Bold.ttf */; };
+		784D832FA5884ADA9DADBA0D /* InriaSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E94DB91945204B1D8F54929F /* InriaSans-BoldItalic.ttf */; };
+		A8C25C968EB644E58466AE89 /* InriaSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B11EA344DE21410699885E08 /* InriaSans-Italic.ttf */; };
+		D7A5B0A3A0E5440FAE4EBED9 /* InriaSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 746A2CA2FEE04DB692F0AA04 /* InriaSans-Light.ttf */; };
+		C36E2BA6095A43B1BBEC76B2 /* InriaSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27D669F0285B4BBF85A58DFE /* InriaSans-LightItalic.ttf */; };
+		356E8A5FD14D46ABA47793DC /* InriaSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A34E924E733F48D8826F20CA /* InriaSans-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +39,12 @@
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-molescheck/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		A2ECA07935074DEF969C7F7A /* noop-file.swift */ = {isa = PBXFileReference; name = "noop-file.swift"; path = "molescheck/noop-file.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
 		010E93D25F51464399E1470E /* molescheck-Bridging-Header.h */ = {isa = PBXFileReference; name = "molescheck-Bridging-Header.h"; path = "molescheck/molescheck-Bridging-Header.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		F3C654E39E7D46E8A9583EB6 /* InriaSans-Bold.ttf */ = {isa = PBXFileReference; name = "InriaSans-Bold.ttf"; path = "../src/assets/fonts/InriaSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E94DB91945204B1D8F54929F /* InriaSans-BoldItalic.ttf */ = {isa = PBXFileReference; name = "InriaSans-BoldItalic.ttf"; path = "../src/assets/fonts/InriaSans-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B11EA344DE21410699885E08 /* InriaSans-Italic.ttf */ = {isa = PBXFileReference; name = "InriaSans-Italic.ttf"; path = "../src/assets/fonts/InriaSans-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		746A2CA2FEE04DB692F0AA04 /* InriaSans-Light.ttf */ = {isa = PBXFileReference; name = "InriaSans-Light.ttf"; path = "../src/assets/fonts/InriaSans-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		27D669F0285B4BBF85A58DFE /* InriaSans-LightItalic.ttf */ = {isa = PBXFileReference; name = "InriaSans-LightItalic.ttf"; path = "../src/assets/fonts/InriaSans-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A34E924E733F48D8826F20CA /* InriaSans-Regular.ttf */ = {isa = PBXFileReference; name = "InriaSans-Regular.ttf"; path = "../src/assets/fonts/InriaSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +100,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
+				9885FC6D6F74440D926A21ED /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -135,6 +148,20 @@
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
+		};
+		9885FC6D6F74440D926A21ED /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				F3C654E39E7D46E8A9583EB6 /* InriaSans-Bold.ttf */,
+				E94DB91945204B1D8F54929F /* InriaSans-BoldItalic.ttf */,
+				B11EA344DE21410699885E08 /* InriaSans-Italic.ttf */,
+				746A2CA2FEE04DB692F0AA04 /* InriaSans-Light.ttf */,
+				27D669F0285B4BBF85A58DFE /* InriaSans-LightItalic.ttf */,
+				A34E924E733F48D8826F20CA /* InriaSans-Regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -199,6 +226,12 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
 				5A6E31FD4EA5451CB5218E94 /* molescheck-Bridging-Header.h in Resources */,
+				477DFE8AE66F419482990467 /* InriaSans-Bold.ttf in Resources */,
+				784D832FA5884ADA9DADBA0D /* InriaSans-BoldItalic.ttf in Resources */,
+				A8C25C968EB644E58466AE89 /* InriaSans-Italic.ttf in Resources */,
+				D7A5B0A3A0E5440FAE4EBED9 /* InriaSans-Light.ttf in Resources */,
+				C36E2BA6095A43B1BBEC76B2 /* InriaSans-LightItalic.ttf in Resources */,
+				356E8A5FD14D46ABA47793DC /* InriaSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -128,12 +128,7 @@ const tagsStyles = {
   },
 };
 
-const systemFonts = [
-  Fonts.type.base,
-  Fonts.type.bold,
-  Fonts.type.boldItalic,
-  Fonts.type.italic,
-];
+const systemFonts = [Fonts.type.base, Fonts.type.bold, Fonts.type.italic];
 
 export default {
   mainStyles,

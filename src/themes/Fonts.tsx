@@ -1,10 +1,10 @@
 import { countPixelRatio } from "../utility";
 
 const type = {
-  base: "CircularStd",
-  bold: "CircularStd-Bold",
-  boldItalic: "CircularStd-BoldItalic",
-  italic: "CircularStd-Italic",
+  base: "InriaSans-Regular",
+  light: "InriaSans-Light",
+  bold: "InriaSans-Bold",
+  italic: "InriaSans-Italic",
 };
 const size = {
   h1: countPixelRatio(33),
@@ -24,19 +24,19 @@ const size = {
 
 const style = {
   h1: {
-    fontFamily: type.bold,
+    fontFamily: type.base,
     fontSize: size.h1,
   },
   h2: {
-    fontFamily: type.bold,
+    fontFamily: type.base,
     fontSize: size.h2,
   },
   h3: {
-    fontFamily: type.bold,
+    fontFamily: type.base,
     fontSize: size.h3,
   },
   h4: {
-    fontFamily: type.bold,
+    fontFamily: type.base,
     fontSize: size.h4,
   },
   h5: {
@@ -68,7 +68,7 @@ const style = {
     fontSize: size.h5,
   },
   baseH6: {
-    fontFamily: type.base,
+    fontFamily: type.light,
     fontSize: size.h6,
   },
   note: {
