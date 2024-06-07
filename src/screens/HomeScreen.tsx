@@ -9,6 +9,7 @@ import {
 import ArticleCard from "../components/cards/ArticleCard";
 import DisclaimerModal from "../components/modals/DisclaimerModal";
 import Images from "../themes/Images";
+import { countPixelRatio } from "../utility/SmartScale";
 
 const data = [
   {
@@ -37,7 +38,7 @@ const data = [
   },
 ];
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [isModalVisible, setIsModalVisible] = useState(true);
   const handleModal = () => setIsModalVisible(!isModalVisible);
 
@@ -54,10 +55,10 @@ const HomeScreen = () => {
       <TouchableOpacity
         style={styles.fab}
         onPress={() => {
-          /* Handle FAB press */
+          navigation.navigate("ScanMolesScreen", {});
         }}
       >
-        <Image source={Images.iconScan} style={styles.fabImage} />
+        <Image source={Images.iconScan} style={styles.iconScan} />
       </TouchableOpacity>
       <DisclaimerModal visible={isModalVisible} onClosePressed={handleModal} />
     </View>
@@ -65,6 +66,11 @@ const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  iconScan: {
+    width: countPixelRatio(23.8),
+    height: countPixelRatio(23.8),
+    resizeMode: "contain",
+  },
   container: {
     flex: 1,
     justifyContent: "center",
@@ -73,7 +79,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     marginTop: 20,
-    width: "100%", // Make sure the content container takes full width
+    width: "100%",
   },
   scanImage: {
     width: 100,
