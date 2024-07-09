@@ -6,6 +6,7 @@ import Images from "../themes/Images";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import RNFS from "react-native-fs";
 import jpeg from "jpeg-js";
+import { PNG } from "pngjs";
 import ImageResizer from "react-native-image-resizer";
 
 const App = () => {
@@ -31,20 +32,41 @@ const App = () => {
   };
 
   const convertImgToArr = async (imageUri: string) => {
-    const resizedImage = await ImageResizer.createResizedImage(
-      imageUri,
-      100,
-      100,
-      "PNG",
-      100
-    );
-    const base64Image = await RNFS.readFile(resizedImage.uri, "base64");
-    const imageBuffer = Buffer.from(base64Image, "base64");
-    const decodedImage = jpeg.decode(imageBuffer, { useTArray: true });
-    const pixelArray = convertTo2DArray(decodedImage);
-    console.log("pixelArray > " + pixelArray);
+    try {
+      // Resize the image
+      const resizedImage = await ImageResizer.createResizedImage(
+        imageUri,
+        100,
+        100,
+        "PNG",
+        100
+      );
 
-    return pixelArray;
+      // Read the resized image as a base64 string
+      const base64Image = await RNFS.readFile(resizedImage.uri, "base64");
+
+      // Convert the base64 string to a buffer
+      const imageBuffer = Buffer.from(base64Image, "base64");
+
+      // Decode the image buffer using PNG decoder
+      const png = new PNG();
+      const decodedImage = png.parse(imageBuffer, (error, data) => {
+        if (error) {
+          throw error;
+        }
+        return data;
+      });
+
+      console.log("decodedImage > ", decodedImage);
+
+      // Convert the decoded image to a 2D array
+      const pixelArray = convertTo2DArray(decodedImage);
+      console.log("pixelArray > ", pixelArray);
+
+      return pixelArray;
+    } catch (error) {
+      console.error("Error in convertImgToArr: ", error);
+    }
   };
 
   const convertTo2DArray = (image) => {
