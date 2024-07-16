@@ -4,9 +4,6 @@ import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import { countPixelRatio } from "../utility/SmartScale";
 import Images from "../themes/Images";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import RNFS from "react-native-fs";
-import jpeg from "jpeg-js";
-import { PNG } from "pngjs";
 import ImageResizer from "react-native-image-resizer";
 
 const App = () => {
@@ -43,13 +40,13 @@ const App = () => {
       );
 
       // Read the resized image as a base64 string
-      const base64Image = await RNFS.readFile(resizedImage.uri, "base64");
+      const base64Image = null;
 
       // Convert the base64 string to a buffer
       const imageBuffer = Buffer.from(base64Image, "base64");
 
       // Decode the image buffer using PNG decoder
-      const png = new PNG();
+      const png = null;
       const decodedImage = png.parse(imageBuffer, (error, data) => {
         if (error) {
           throw error;
