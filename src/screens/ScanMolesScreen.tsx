@@ -1,113 +1,79 @@
 import React, { useState } from "react";
-import { View, Image, StyleSheet } from "react-native";
-import { launchCamera, launchImageLibrary } from "react-native-image-picker";
+import { View, Image, StyleSheet, Alert } from "react-native";
+import {
+  CameraType,
+  MediaType,
+  launchCamera,
+  launchImageLibrary,
+} from "react-native-image-picker";
 import { countPixelRatio } from "../utility/SmartScale";
 import Images from "../themes/Images";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import ImageResizer from "react-native-image-resizer";
+import * as ImagePicker from "expo-image-picker";
 
 const App = () => {
   const [imageUri, setImageUri] = useState(null);
 
-  const openCamera = () => {
-    const options = {
-      mediaType: "photo",
-      cameraType: "back",
-    };
-
-    launchCamera(options, (response) => {
-      if (response.didCancel) {
-        console.log("User cancelled image picker");
-      } else if (response.errorCode) {
-        console.log("ImagePicker Error: ", response.errorMessage);
-      } else if (response.assets && response.assets.length > 0) {
-        var img_arr = convertImgToArr(response.assets[0].uri);
-        console.log(img_arr);
-        setImageUri(response.assets[0].uri);
-      }
-    });
-  };
-
-  const convertImgToArr = async (imageUri: string) => {
-    try {
-      // Resize the image
-      const resizedImage = await ImageResizer.createResizedImage(
-        imageUri,
-        100,
-        100,
-        "PNG",
-        100
-      );
-
-      // Read the resized image as a base64 string
-      const base64Image = null;
-
-      // Convert the base64 string to a buffer
-      const imageBuffer = Buffer.from(base64Image, "base64");
-
-      // Decode the image buffer using PNG decoder
-      const png = null;
-      const decodedImage = png.parse(imageBuffer, (error, data) => {
-        if (error) {
-          throw error;
-        }
-        return data;
-      });
-
-      console.log("decodedImage > ", decodedImage);
-
-      // Convert the decoded image to a 2D array
-      const pixelArray = convertTo2DArray(decodedImage);
-      console.log("pixelArray > ", pixelArray);
-
-      return pixelArray;
-    } catch (error) {
-      console.error("Error in convertImgToArr: ", error);
+  const handleImagePickerResponse = (result: ImagePicker.ImagePickerResult) => {
+    if (!result.canceled) {
+      console.log(result.assets[0]);
     }
   };
 
-  const convertTo2DArray = (image) => {
-    const { width, height, data } = image;
-    const array2D = [];
-    console.log("array2D > " + array2D);
+  const showImagePickerOptions = () => {
+    Alert.alert("Select image", "How would you like to upload image ?", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Make a photo",
+        onPress: () => openCamera(),
+      },
+      {
+        text: "Select from galary",
+        onPress: () => openImagePicker(),
+      },
+    ]);
+  };
+  const openImagePicker = async () => {
+    const permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    for (let y = 0; y < height; y++) {
-      const row = [];
-      for (let x = 0; x < width; x++) {
-        const index = (y * width + x) * 4;
-        const r = data[index];
-        const g = data[index + 1];
-        const b = data[index + 2];
-        const a = data[index + 3];
-        row.push([r, g, b, a]);
-      }
-      array2D.push(row);
+    if (permissionResult.granted === false) {
+      alert("Have no access to images.");
+      return;
     }
 
-    return array2D;
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 1,
+    });
+
+    handleImagePickerResponse(result);
   };
 
-  const openGallery = () => {
-    const options = {
-      mediaType: "photo",
-    };
+  const openCamera = async () => {
+    const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
 
-    launchImageLibrary(options, (response) => {
-      if (response.didCancel) {
-        console.log("User cancelled image picker");
-      } else if (response.errorCode) {
-        console.log("ImagePicker Error: ", response.errorMessage);
-      } else if (response.assets && response.assets.length > 0) {
-        setImageUri(response.assets[0].uri);
-      }
+    if (permissionResult.granted === false) {
+      alert("Have to access to camera");
+      return;
+    }
+
+    const result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 1,
     });
+
+    handleImagePickerResponse(result);
   };
 
   return (
     <View style={styles.container}>
       {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
       <View style={styles.btnContainer}>
-        <TouchableOpacity onPress={openCamera}>
+        <TouchableOpacity onPress={showImagePickerOptions}>
           <Image source={Images.iconCamera} style={styles.btn} />
         </TouchableOpacity>
       </View>
