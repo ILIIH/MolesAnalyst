@@ -41,7 +41,7 @@ const App = () => {
       await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (permissionResult.granted === false) {
-      alert("Vous avez refusé l'accès à la galerie d'images.");
+      alert("Have no access to images.");
       return;
     }
 
@@ -57,7 +57,7 @@ const App = () => {
     const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
 
     if (permissionResult.granted === false) {
-      alert("Vous avez refusé l'accès à la caméra.");
+      alert("Have to access to camera");
       return;
     }
 
