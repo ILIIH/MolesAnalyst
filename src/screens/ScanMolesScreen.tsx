@@ -10,13 +10,30 @@ import { countPixelRatio } from "../utility/SmartScale";
 import Images from "../themes/Images";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
+import * as FileSystem from "expo-file-system";
 
 const App = () => {
   const [imageUri, setImageUri] = useState(null);
 
-  const handleImagePickerResponse = (result: ImagePicker.ImagePickerResult) => {
+  const handleImagePickerResponse = async (
+    result: ImagePicker.ImagePickerResult
+  ) => {
     if (!result.canceled) {
-      console.log(result.assets[0]);
+      setImageUri(result.assets[0].uri);
+      readImgToArr(result.assets[0].uri);
+    }
+  };
+
+  const readImgToArr = async (uri) => {
+    try {
+      const base64 = await FileSystem.readAsStringAsync(uri, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+      const byteArray = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
+
+      console.log(byteArray);
+    } catch (error) {
+      console.error("Error reading file", error);
     }
   };
 
@@ -48,6 +65,7 @@ const App = () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 1,
+      base64: true,
     });
 
     handleImagePickerResponse(result);
