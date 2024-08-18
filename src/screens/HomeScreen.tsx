@@ -42,12 +42,18 @@ const HomeScreen = ({ navigation }) => {
   const [isModalVisible, setIsModalVisible] = useState(true);
   const handleModal = () => setIsModalVisible(!isModalVisible);
 
+  const handleArticlePress = (item) => {
+    navigation.navigate("ArcticleDetailsScreen", { item });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
         <FlatList
           data={data}
-          renderItem={({ item }) => <ArticleCard data={item} />}
+          renderItem={({ item }) => (
+            <ArticleCard data={item} onPress={handleArticlePress} />
+          )}
           keyExtractor={(item) => item.id}
           numColumns={2}
         />
