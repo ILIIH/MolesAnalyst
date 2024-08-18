@@ -34,6 +34,9 @@ function DrawerNavigator() {
   return (
     <Drawer.Navigator>
       <Drawer.Screen name="Moles check" component={StackNavigator} />
+      <Drawer.Screen name="Observation history" component={StackNavigator} />
+      <Drawer.Screen name="Suspected Problems" component={StackNavigator} />
+      <Drawer.Screen name="Contacts" component={StackNavigator} />
     </Drawer.Navigator>
   );
 }
