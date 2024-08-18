@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import HomeScreen from "../screens/HomeScreen";
 import ScanMolesScreen from "../screens/ScanMolesScreen";
+import ArcticleDetailsScreen from "../screens/ArcticleDetailsScreen";
 
 const Stack = createStackNavigator();
 function StackNavigator() {
@@ -17,6 +18,11 @@ function StackNavigator() {
       <Stack.Screen
         name="ScanMolesScreen"
         component={ScanMolesScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ArcticleDetailsScreen"
+        component={ArcticleDetailsScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

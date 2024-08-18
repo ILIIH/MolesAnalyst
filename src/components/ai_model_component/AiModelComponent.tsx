@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import * as tf from "@tensorflow/tfjs";
 
-const ModelComponent = () => {
+
+const AiModelComponent = () => {
   const [model, setModel] = useState(null);
   const [prediction, setPrediction] = useState(null);
 
   useEffect(() => {
     const loadModel = async () => {
       try {
+        const modelPath = "./path/to/model/model.json";
+        tf.loadLayersModel(modelPath).then((model) => {
+          console.log("Model loaded successfully >> " + model);
+          setModel(model);
+        });
         const loadedModel = await tf.loadLayersModel(
-          "../assets/ai-models/mole_recognison.weights"
+          "../assets/ai-models/mole_recognison.weights.h5"
         );
-        setModel(loadedModel);
         console.log("Model loaded successfully");
       } catch (error) {
         console.error("Error loading the model:", error);
@@ -39,4 +44,4 @@ const ModelComponent = () => {
   );
 };
 
-export default ModelComponent;
+export default AiModelComponent;

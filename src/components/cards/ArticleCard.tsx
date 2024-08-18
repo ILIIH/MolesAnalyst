@@ -1,28 +1,26 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { Fonts } from "../../themes";
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 
 type Props = {
   onPress?: (data: any) => void;
   data: any;
 };
 
-export default React.memo<Props>((props: Props) => {
-  const { data } = props;
+const ArticleCard: React.FC<Props> = (props) => {
+  const { onPress, data } = props;
   const { articleImageUrl, title } = data;
+
   return (
-    <View style={[styles.card]}>
+    <Pressable onPress={() => onPress?.(data)} style={styles.card}>
       <Image source={{ uri: articleImageUrl }} style={styles.cardImage} />
-      <Text style={[Fonts.style.baseH6, styles.cardText]}>{title}</Text>
-    </View>
+      <Text style={styles.cardText}>{title}</Text>
+    </Pressable>
   );
-});
+};
+
+export default React.memo(ArticleCard);
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 10,
-  },
   card: {
     flex: 1,
     margin: 10,
