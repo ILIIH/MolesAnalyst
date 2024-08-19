@@ -18,6 +18,7 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/stack": "^6.3.29",
     "@tensorflow/tfjs": "^4.20.0",
+    "@tensorflow/tfjs-react-native": "^1.0.0",
     "@unimodules/core": "^7.1.2",
     "expo": "~51.0.8",
     "expo-file-system": "^17.0.1",
