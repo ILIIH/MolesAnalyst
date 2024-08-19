@@ -6,34 +6,19 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
 import * as tf from "@tensorflow/tfjs";
+import { bundleResourceIO, decodeJpeg } from "@tensorflow/tfjs-react-native";
 
 const App = () => {
   const [imageUri, setImageUri] = useState(null);
   const [model, setModel] = useState(null);
   const [prediction, setPrediction] = useState(null);
 
-  useEffect(() => {
-    const loadModel = async () => {
-      try {
-        const loadedModel = await tf.loadLayersModel(
-          "../assets/ai-models/mole_recognison.weights.h5"
-        );
-        setModel(loadedModel);
-        console.log("Model loaded successfully");
-      } catch (error) {
-        console.error("Error loading the model:", error);
-      }
-    };
-
-    loadModel();
-  }, []);
+  const modelJSON = require("../src/assets/ai-models/model.json");
+  const modelWeights = require("../src/assets/ai-models/group1-shard1of2.bin");
 
   const makePrediction = async (image) => {
     if (model) {
-      // Example: make a prediction using dummy data
-      const inputTensor = tf.tensor3d([image]); // Adjust the shape and values as per your model input
-      const output = model.predict(inputTensor);
-      setPrediction(output.dataSync());
+      setPrediction(1);
     }
   };
 
