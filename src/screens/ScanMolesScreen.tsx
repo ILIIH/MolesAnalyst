@@ -13,8 +13,20 @@ const App = () => {
   const [model, setModel] = useState(null);
   const [prediction, setPrediction] = useState(null);
 
-  const modelJSON = require("../src/assets/ai-models/model.json");
-  const modelWeights = require("../src/assets/ai-models/group1-shard1of2.bin");
+  const modelJSON = require("../assets/ai-models/model.json");
+  const modelWeights = require("../assets/ai-models/group1.bin");
+
+  useEffect(() => {
+    const loadModel = async () => {
+      const model = await tf
+        .loadLayersModel(bundleResourceIO(modelJSON, modelWeights))
+        .catch((e) => {
+          console.log("[LOADING ERROR] info:", e);
+        });
+      return model;
+    };
+    setModel(loadModel);
+  });
 
   const makePrediction = async (image) => {
     if (model) {
