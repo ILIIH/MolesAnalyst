@@ -39,6 +39,10 @@ export default function App() {
   useEffect(() => {
     loadingData();
 
+    if (__DEV__) {
+      require("./ReactotronConfig");
+    }
+
     const showToast = (message: string) => {
       toastRef.current?.show(message, 2500, () => {});
     };
